@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Product from './Product';
-function Products({ productsList }) {
+import { ProductsContext } from '../App';
+
+function Products() {
+    const { productsList, setProductsList } = useContext(ProductsContext)
     return (
         <div>
             {productsList.map((singleProduct) => {
-                return (
-                    <Product
-                        singleProduct={singleProduct}
-                        key={singleProduct.id}
-                    />
-                );
+                return <Product singleProduct={singleProduct} key={singleProduct.id} />;
             })}
         </div>
     );

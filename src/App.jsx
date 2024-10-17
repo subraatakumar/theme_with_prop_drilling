@@ -4,7 +4,7 @@ import axios from 'axios';
 import Theme from './components/Theme';
 
 export const ThemeContext = createContext('light');
-
+export const ProductsContext = createContext(null);
 
 function App() {
   const [productsList, setProductsList] = useState([]);
@@ -16,12 +16,13 @@ function App() {
     });
   }, []);
 
-
   return (
-    <ThemeContext.Provider value={themeType}>
-      <Theme themeType={themeType} setThemeType={setThemeType} />
-      <Products productsList={productsList} />
-    </ThemeContext.Provider>
+    <ProductsContext.Provider value={{ productsList, setProductsList }}>
+      <ThemeContext.Provider value={themeType}>
+        <Theme themeType={themeType} setThemeType={setThemeType} />
+        <Products />
+      </ThemeContext.Provider>
+    </ProductsContext.Provider>
   );
 }
 
